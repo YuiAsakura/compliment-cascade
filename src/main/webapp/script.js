@@ -25,7 +25,13 @@ compliment.set = function() {
 	span.textContent = compliment.list[ Math.floor( Math.random()*compliment.list.length) ];
 	
 	// body要素に<span>を追加
-	document.body.appendChild( span );	
+	document.body.appendChild( span );
+
+	// 要素がDOMに追加された直後に'show'クラスを追加
+	// 少し遅延させることで、transitionが有効になる
+	setTimeout(function(){
+	  span.classList.add('show');
+	}, 10);
 	
 	// 上限値でストップ
 	if ( document.querySelectorAll(".compliment").length >= compliment.limit ){

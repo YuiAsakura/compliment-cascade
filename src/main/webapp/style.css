@@ -2,10 +2,38 @@
 
 .compliment{
 	position: fixed;	/* 画面上の指定座標に配置するため */
-	font-size: 32px;
+	font-size: 20px;
+	opacity: 1;
 	/* 文字を指定座標位置の中央に表示させるための設定 */
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	overflow: visible;
+	/* テキストを折り返さない */
+	white-space: nowrap;
+	
+	/* 拡大・透過のアニメーションを設定 */
+	transition: font-size 10s, opacity 10s;
+	
+	/* 文字の中心を維持する設定 */
+    transform: translate(-50%, -50%); /* 要素の中心を基準点に移動 */
+    left: 50%; /* 親要素の水平方向の中心 */
+    top: 50%;  /* 親要素の垂直方向の中心 */
 }
+
+.compliment.show {
+	font-size: 200px;
+	opacity: 0;
+}
+
+/* 文字を波状に動かすサンプルコード
+.compliment{
+  display: inline-block;
+  animation: wave 1.2s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+*/
