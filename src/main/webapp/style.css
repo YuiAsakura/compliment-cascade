@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.compliment{
+	position: fixed;	/* 画面上の指定座標に配置するため */
+	font-size: 32px;
+	/* 文字を指定座標位置の中央に表示させるための設定 */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 0px;
+	height: 0px;
+	overflow: visible;
+}
