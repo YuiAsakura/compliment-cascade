@@ -11,7 +11,6 @@ compliment.list = [
 ];
 
 compliment.count = 0;	// 文字の番号カウント
-compliment.limit = 100; // 表示する文字の戸数の上限値
 
 compliment.set = function() {
 	// <span>要素を生成
@@ -24,6 +23,14 @@ compliment.set = function() {
 	// リスト中の文字列をランダムに表示
 	span.textContent = compliment.list[ Math.floor( Math.random()*compliment.list.length) ];
 	
+	// アニメーション終了後に要素を削除する処理を追加
+	span.addEventListener('transitionend', function(e) {
+	    // opacityプロパティの変化が完了した時だけ処理を実行
+	    if (e.propertyName === 'opacity') {
+	        this.remove(); // 要素をDOMから削除
+	    }
+	});
+	
 	// body要素に<span>を追加
 	document.body.appendChild( span );
 
@@ -32,11 +39,6 @@ compliment.set = function() {
 	setTimeout(function(){
 	  span.classList.add('show');
 	}, 10);
-	
-	// 上限値でストップ
-	if ( document.querySelectorAll(".compliment").length >= compliment.limit ){
-		clearInterval( compliment.tmr );
-	}
 };
 
 // ページの読み込みが完了したらタイマーを起動する
