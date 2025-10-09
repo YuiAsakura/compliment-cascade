@@ -32,8 +32,8 @@ public class ComplimentServlet extends HttpServlet {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
 			// データベースの接続情報を設定
-			String url = "jdbc:mysql://localhost/compliment_cascade?useSSL=false&serverTimezone=Japan&allowPublicKeyRetrieval=true";
-			String user = "root";
+			String url = "jdbc:mysql://compliment-cascade-db.c984yc8qqlls.ap-northeast-1.rds.amazonaws.com:3306/compliment?useSSL=false&serverTimezone=Japan&allowPublicKeyRetrieval=true";
+			String user = "YuiAsakura";
 			String password = "Shirokumakoguma3";
 
 			// try-with-resources文で、Connection, Statement, ResultSetを自動で閉じます
