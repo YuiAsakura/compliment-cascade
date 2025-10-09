@@ -3,14 +3,8 @@
  */
 var compliment = new Object();
 
-// 褒め言葉リスト
-compliment.list = [
-	"かわいい", "かっこいい", "天才", "おしゃれ",
-	"ゲーム上手い", "料理上手", "センスある", "ポジティブ",
-	"頼りになる", "誠実", "面白い", "努力家"
-];
-
-compliment.count = 0;	// 文字の番号カウント
+// JSPから渡されたcomplimentListを使用する
+compliment.list = complimentList;
 
 compliment.set = function() {
 	// <span>要素を生成
