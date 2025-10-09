@@ -58,6 +58,5 @@ public class ComplimentServlet extends HttpServlet {
 
 		// 処理をJSPファイルに転送
 		request.getRequestDispatcher("index.jsp").forward(request, response);
-		
 	}
 }
