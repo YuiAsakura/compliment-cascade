@@ -101,6 +101,8 @@ public class ComplimentServlet extends HttpServlet {
 		// "compliments"という名前でJSPにデータを渡す
 		request.setAttribute("compliments", compliments);
 
+		System.out.println("DEBUG: Forwarding to index.jsp");
+		
 		// 処理をJSPファイルに転送
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
