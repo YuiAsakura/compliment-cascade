@@ -31,7 +31,8 @@ public class ComplimentServlet extends HttpServlet {
 		
 		try {
 			// JDBCドライバーをロード
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			//Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("org.postgresql.Driver");
 			
 			/*
 			// データベースの接続情報を設定(local)
