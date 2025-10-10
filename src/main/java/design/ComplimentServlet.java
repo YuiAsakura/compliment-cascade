@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * DBからComplimentテーブルを取得するためのサーブレット
@@ -44,9 +46,32 @@ public class ComplimentServlet extends HttpServlet {
 			 */
 			
 			// データベースの接続情報を設定(Render)
-			String url = System.getenv("DATABASE_URL"); // Renderが提供する環境変数名に合わせる
-			String user = System.getenv("DATABASE_USER");
-			String password = System.getenv("DATABASE_PASSWORD");
+			// Renderの環境変数からURLを取得
+			String dbUrl = System.getenv("DATABASE_URL");
+			if (dbUrl == null || dbUrl.isEmpty()) {
+				// 環境変数が設定されていない場合の処理
+				System.err.println("DATABASE_URL environment cariable is not set.");
+				return;
+			}
+			
+			URI dbUri;
+			try {
+				dbUri = new URI(dbUrl);
+			} catch (URISyntaxException e) {
+				// 無効なURL形式の場合の処理
+				e.printStackTrace();
+				return;
+			}
+
+			// URLから接続情報を抽出
+			String user = dbUri.getUserInfo().split(":")[0];
+			String password = dbUri.getUserInfo().split(":")[1];
+			String hostname = dbUri.getHost();
+			int port = dbUri.getPort();
+			String databaseName = dbUri.getPath().substring(1);
+
+			// 接続URLを再構築
+			String url = "jdbc:postgresql://" + hostname + ":" + port + "/" + databaseName;
 
 			// try-with-resources文で、Connection, Statement, ResultSetを自動で閉じます
 			try (Connection conn = DriverManager.getConnection(url, user, password);
