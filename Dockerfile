@@ -12,7 +12,7 @@ RUN mv /opt/apache-tomcat-10.1.20 /opt/tomcat
 
 # アプリケーションのWARファイルをTomcatのwebappsディレクトリにコピー
 # ファイル名はあなたのWARファイル名に合わせる必要があります
-COPY C:/Users/sirok/Desktop/myworks/compliment-cascade/compliment-cascade.war /opt/tomcat/webapps/ROOT.war
+COPY compliment-cascade.war /opt/tomcat/webapps/ROOT.war
 
 # Tomcatのポートを公開
 EXPOSE 8080
