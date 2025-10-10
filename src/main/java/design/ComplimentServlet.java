@@ -31,10 +31,22 @@ public class ComplimentServlet extends HttpServlet {
 			// JDBCドライバーをロード
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
-			// データベースの接続情報を設定
+			/*
+			// データベースの接続情報を設定(local)
 			String url = "jdbc:mysql://localhost/compliment_cascade?useSSL=false&serverTimezone=Japan&allowPublicKeyRetrieval=true";
 			String user = "root";
 			String password = "Shirokumakoguma3";
+			
+			// データベースの接続情報を設定(AWS)
+			//String url = "jdbc:mysql://compliment-cascade-db.c984yc8qqlls.ap-northeast-1.rds.amazonaws.com:3306/compliment?useSSL=false&serverTimezone=Japan&allowPublicKeyRetrieval=true";
+			//String user = "YuiAsakura";
+			//String password = "Shirokumakoguma3";
+			 */
+			
+			// データベースの接続情報を設定(Render)
+			String url = System.getenv("DATABASE_URL"); // Renderが提供する環境変数名に合わせる
+			String user = System.getenv("DATABASE_USER");
+			String password = System.getenv("DATABASE_PASSWORD");
 
 			// try-with-resources文で、Connection, Statement, ResultSetを自動で閉じます
 			try (Connection conn = DriverManager.getConnection(url, user, password);
