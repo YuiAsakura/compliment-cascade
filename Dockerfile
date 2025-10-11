@@ -15,12 +15,11 @@ RUN mv /opt/apache-tomcat-10.1.20 /opt/tomcat
 # アプリケーションのWARファイルをTomcatのwebappsディレクトリにコピー
 COPY compliment-cascade.war /opt/tomcat/webapps/ROOT.war
 
+# 修正したserver.xmlをコンテナにコピー
+COPY server.xml /opt/tomcat/conf/server.xml
+
 # Tomcatのポートを公開
 EXPOSE 8080
 
-# Tomcatのポートを環境変数から設定
-ENV CATALINA_OPTS="-Dserver.port=$PORT"
-
-# Tomcatを起動するコマンド
-ENTRYPOINT ["/opt/tomcat/bin/catalina.sh"]
-CMD ["run"]
+# Tomcatをフォアグラウンドで起動するコマンド
+CMD ["/opt/tomcat/bin/catalina.sh", "run"]
