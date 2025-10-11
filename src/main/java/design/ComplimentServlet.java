@@ -33,23 +33,19 @@ public class ComplimentServlet extends HttpServlet {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			//Class.forName("org.postgresql.Driver");
 			
+			/*
 			// データベースの接続情報を設定(local)
 			String url = "jdbc:mysql://localhost/compliment_cascade?useSSL=false&serverTimezone=Japan&allowPublicKeyRetrieval=true";
 			String user = "root";
 			String password = "Shirokumakoguma3";
+			*/
 			
-			// データベースの接続情報を設定(AWS)
-			//String url = "jdbc:mysql://compliment-cascade-db.c984yc8qqlls.ap-northeast-1.rds.amazonaws.com:3306/compliment?useSSL=false&serverTimezone=Japan&allowPublicKeyRetrieval=true";
-			//String user = "YuiAsakura";
-			//String password = "Shirokumakoguma3";
-			
-			/*
-			// データベースの接続情報を設定(Render)
-			// Renderの環境変数からURLを取得
-			String dbUrl = System.getenv("DATABASE_URL");
+			// データベースの接続情報を設定(Railway)
+			// Railwayの環境変数からURLを取得
+			String dbUrl = System.getenv("MYSQL_PUBLIC_URL");
 			if (dbUrl == null || dbUrl.isEmpty()) {
 				// 環境変数が設定されていない場合の処理
-				System.err.println("DATABASE_URL environment cariable is not set.");
+				System.err.println("MYSQL_PUBLIC_URL environment cariable is not set.");
 				return;
 			}
 			
@@ -70,13 +66,13 @@ public class ComplimentServlet extends HttpServlet {
 			String databaseName = dbUri.getPath().substring(1);
 
 			// 接続URLを再構築
-			String url = "jdbc:postgresql://" + hostname + ":" + port + "/" + databaseName;
-			*/
-		
+			String url = "jdbc:mysql://" + hostname + ":" + port + "/" + databaseName + "?serverTimezone=Japan&useSSL=false&allowPublicKeyRetrieval=true";
+			
+			// 以降取得した url, user, passwordを使う
 			// try-with-resources文で、Connection, Statement, ResultSetを自動で閉じます
 			try (Connection conn = DriverManager.getConnection(url, user, password);
 				 Statement stat = conn.createStatement();
-				 ResultSet rs = stat.executeQuery("SELECT word FROM compliment")) {	// Complimentテーブルのword列を取得
+				 ResultSet rs = stat.executeQuery("SELECT word FROM compliments")) {	// Complimentテーブルのword列を取得
 				
 				// 取得した結果セットの各行をループ
 				while (rs.next()) {
