@@ -19,4 +19,5 @@ COPY compliment-cascade.war /opt/tomcat/webapps/ROOT.war
 EXPOSE 8080
 
 # Tomcatを起動するコマンド
-CMD ["/opt/tomcat/bin/catalina.sh", "run", "-Dserver.port=$PORT"]
+ENTRYPOINT ["/opt/tomcat/bin/catalina.sh"]
+CMD ["run", "-Dserver.port=$PORT"]
