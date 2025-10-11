@@ -33,13 +33,12 @@ public class ComplimentServlet extends HttpServlet {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			//Class.forName("org.postgresql.Driver");
 			
-			/*
 			// データベースの接続情報を設定(local)
 			String url = "jdbc:mysql://localhost/compliment_cascade?useSSL=false&serverTimezone=Japan&allowPublicKeyRetrieval=true";
 			String user = "root";
 			String password = "Shirokumakoguma3";
-			*/
 			
+			/*
 			// データベースの接続情報を設定(Railway)
 			// Railwayの環境変数からURLを取得
 			String dbUrl = System.getenv("MYSQL_PUBLIC_URL");
@@ -67,6 +66,7 @@ public class ComplimentServlet extends HttpServlet {
 
 			// 接続URLを再構築
 			String url = "jdbc:mysql://" + hostname + ":" + port + "/" + databaseName + "?serverTimezone=Japan&useSSL=false&allowPublicKeyRetrieval=true";
+			*/
 			
 			// 以降取得した url, user, passwordを使う
 			// try-with-resources文で、Connection, Statement, ResultSetを自動で閉じます
