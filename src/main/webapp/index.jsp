@@ -49,6 +49,9 @@
 				}
 			%>
 		];
+		
+		console.log("Compliment List:", complimentList);
+		console.log("List length:", complimentList.length);
 
 		// script.jsの内容をここに貼り付け
 		var compliment = new Object();
