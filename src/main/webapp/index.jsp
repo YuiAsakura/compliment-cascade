@@ -47,6 +47,10 @@
 						}
 					}
 				}
+				else {
+					
+					%> console.log("the list is empty"); <%
+				}
 			%>
 		];
 		
