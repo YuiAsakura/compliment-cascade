@@ -28,22 +28,22 @@ public class ComplimentServlet extends HttpServlet {
 		// データベースから取得した褒め言葉を格納するリストを初期化
 		List<String> compliments = new ArrayList<>();
 		
-		/*
 		try {
 			// JDBCドライバーをロード
-			//Class.forName("com.mysql.cj.jdbc.Driver");
-			Class.forName("org.postgresql.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			//Class.forName("org.postgresql.Driver");
 			
 			// データベースの接続情報を設定(local)
-			//String url = "jdbc:mysql://localhost/compliment_cascade?useSSL=false&serverTimezone=Japan&allowPublicKeyRetrieval=true";
-			//String user = "root";
-			//String password = "Shirokumakoguma3";
+			String url = "jdbc:mysql://localhost/compliment_cascade?useSSL=false&serverTimezone=Japan&allowPublicKeyRetrieval=true";
+			String user = "root";
+			String password = "Shirokumakoguma3";
 			
 			// データベースの接続情報を設定(AWS)
 			//String url = "jdbc:mysql://compliment-cascade-db.c984yc8qqlls.ap-northeast-1.rds.amazonaws.com:3306/compliment?useSSL=false&serverTimezone=Japan&allowPublicKeyRetrieval=true";
 			//String user = "YuiAsakura";
 			//String password = "Shirokumakoguma3";
 			
+			/*
 			// データベースの接続情報を設定(Render)
 			// Renderの環境変数からURLを取得
 			String dbUrl = System.getenv("DATABASE_URL");
@@ -71,7 +71,8 @@ public class ComplimentServlet extends HttpServlet {
 
 			// 接続URLを再構築
 			String url = "jdbc:postgresql://" + hostname + ":" + port + "/" + databaseName;
-
+			*/
+		
 			// try-with-resources文で、Connection, Statement, ResultSetを自動で閉じます
 			try (Connection conn = DriverManager.getConnection(url, user, password);
 				 Statement stat = conn.createStatement();
@@ -87,14 +88,15 @@ public class ComplimentServlet extends HttpServlet {
 			// データベース接続やドライバーが見つからない場合のエラー処理
 			e.printStackTrace();
 		}
-		*/
 		
+		/*
 		// test
 		compliments.add("素晴らしい！");
 		compliments.add("最高だね");
 		compliments.add("がんばった");
 		compliments.add("優しいね");
 		compliments.add("頼りになる");
+		*/
 
 		// 取得した褒め言葉のリストをリクエスト属性に設定
 		// "compliments"という名前でJSPにデータを渡す
