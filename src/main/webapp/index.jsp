@@ -13,7 +13,7 @@
 	.compliment{
 		position: fixed;
 		font-size: 20px;
-		opacity: 0;
+		opacity: 1;
 
 		display: flex;
 		align-items: center;
@@ -30,7 +30,7 @@
 
 	.compliment.show {
 		font-size: 200px;
-		opacity: 1;
+		opacity: 0;
 	}
 	</style>
 </head>
