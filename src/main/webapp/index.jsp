@@ -7,31 +7,82 @@
 <head>
 	<meta charset="UTF-8">
 	<title>compiment-cascade</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<style>
+	@charset "UTF-8";
+
+	.compliment{
+		position: fixed;
+		font-size: 20px;
+		opacity: 1;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: visible;
+		white-space: nowrap;
+
+		transition: font-size 10s, opacity 10s;
+
+	    transform: translate(-50%, -50%);
+	    left: 50%;
+	    top: 50%;
+	}
+
+	.compliment.show {
+		font-size: 200px;
+		opacity: 0;
+	}
+	</style>
 </head>
 <body>
 	<script>
-		// Javaから渡された褒め言葉リストをJavaScriptの変数に格納
 		const complimentList = [
 			<%
-				// サーブレットから渡されたリストをリクエスト属性から取得
 				List<String> compliments = (List<String>) request.getAttribute("compliments");
-				
-				// リストがnullでなく、要素が存在する場合に処理
 				if (compliments != null) {
 					for (int i = 0; i < compliments.size(); i++) {
-						// 各単語をJSON形式の文字列（ダブルクォーテーションで囲む）で出力
 						out.print("\"" + compliments.get(i) + "\"");
-						
-						// リストの最後の要素以外はカンマで区切る
 						if (i < compliments.size() - 1) {
 							out.print(", ");
 						}
 					}
 				}
+				else {
+					System.out.println("the list is empty");
+				}
 			%>
 		];
+		
+		console.log("Compliment List:", complimentList);
+		console.log("List length:", complimentList.length);
+
+		// script.jsの内容をここに貼り付け
+		var compliment = new Object();
+		compliment.list = complimentList;
+
+		compliment.set = function() {
+			var span = document.createElement("span");
+			span.className = "compliment";
+			span.style.left = ( Math.random() * 100 ) + "%";
+			span.style.top = ( Math.random() * 100 ) + "%";
+			span.textContent = compliment.list[ Math.floor( Math.random()*compliment.list.length) ];
+
+			span.addEventListener('transitionend', function(e) {
+			    if (e.propertyName === 'opacity') {
+			        this.remove();
+			    }
+			});
+
+			document.body.appendChild( span );
+
+			setTimeout(function(){
+			  span.classList.add('show');
+			}, 10);
+		};
+
+		window.addEventListener('DOMContentLoaded', (event) => {
+			compliment.tmr = setInterval( compliment.set, 500 );
+		});
 	</script>
-	<script src="./script.js"></script>
 </body>
 </html>
