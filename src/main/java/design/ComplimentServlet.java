@@ -19,8 +19,6 @@ import java.net.URISyntaxException;
 /**
  * DBからComplimentテーブルを取得するためのサーブレット
  */
-// @WebServletでこのサーブレットにアクセスするURLパターンを指定する
-@WebServlet("/ComplimentServlet")
 public class ComplimentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
