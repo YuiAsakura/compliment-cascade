@@ -28,7 +28,6 @@ public class ComplimentServlet extends HttpServlet {
 		// データベースから取得した褒め言葉を格納するリストを初期化
 		List<String> compliments = new ArrayList<>();
 		
-		
 		try {
 			// JDBCドライバーをロード
 			Class.forName("com.mysql.cj.jdbc.Driver");
