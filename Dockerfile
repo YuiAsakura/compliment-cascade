@@ -1,8 +1,9 @@
-# ベースイメージとして、Tomcat公式イメージを使用
+# Tomcat公式イメージをベースとして使用
 FROM tomcat:10.1-jdk21-temurin
 
 # アプリケーションのWARファイルをTomcatのwebappsディレクトリにコピー
 COPY compliment-cascade.war /usr/local/tomcat/webapps/ROOT.war
 
-# NGINXの設定ファイルをコンテナにコピー
-COPY nginx.conf /etc/nginx/nginx.conf
+# Tomcatをフォアグラウンドで起動し、ポートを環境変数から設定
+ENTRYPOINT ["/usr/local/tomcat/bin/catalina.sh"]
+CMD ["run", "-Dserver.port=${PORT}"]
