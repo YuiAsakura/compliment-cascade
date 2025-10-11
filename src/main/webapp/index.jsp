@@ -48,8 +48,7 @@
 					}
 				}
 				else {
-					
-					%> console.log("the list is empty"); <%
+					System.out.println("the list is empty");
 				}
 			%>
 		];
