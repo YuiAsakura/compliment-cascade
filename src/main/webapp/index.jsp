@@ -11,7 +11,7 @@
 </head>
 <body>
 	<script>
-		// Javaから渡された褒め言葉リストをJavaScriptの変数に格納
+		// JSPが動的に生成する部分
 		const complimentList = [
 			<%
 				// サーブレットから渡されたリストをリクエスト属性から取得
@@ -20,10 +20,7 @@
 				// リストがnullでなく、要素が存在する場合に処理
 				if (compliments != null) {
 					for (int i = 0; i < compliments.size(); i++) {
-						// 各単語をJSON形式の文字列（ダブルクォーテーションで囲む）で出力
 						out.print("\"" + compliments.get(i) + "\"");
-
-						// リストの最後の要素以外はカンマで区切る
 						if (i < compliments.size() - 1) {
 							out.print(", ");
 						}

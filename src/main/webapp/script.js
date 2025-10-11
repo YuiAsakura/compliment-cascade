@@ -1,9 +1,9 @@
 /**
  * 褒め言葉の滝を生成するスクリプト
  */
-var compliment = new Object();
-
 // JSPから渡されたcomplimentListを使用する
+// var compliment = new Object(); は不要です。
+
 compliment.list = complimentList;
 
 compliment.set = function() {
@@ -16,7 +16,7 @@ compliment.set = function() {
 	span.style.top = ( Math.random() * 100 ) + "%";
 	// リスト中の文字列をランダムに表示
 	span.textContent = compliment.list[ Math.floor( Math.random()*compliment.list.length) ];
-	
+
 	// アニメーション終了後に要素を削除する処理を追加
 	span.addEventListener('transitionend', function(e) {
 	    // opacityプロパティの変化が完了した時だけ処理を実行
@@ -24,7 +24,7 @@ compliment.set = function() {
 	        this.remove(); // 要素をDOMから削除
 	    }
 	});
-	
+
 	// body要素に<span>を追加
 	document.body.appendChild( span );
 
@@ -39,4 +39,4 @@ compliment.set = function() {
 window.addEventListener('DOMContentLoaded', (event) => {
 	// 500ミリ秒間隔で実行
 	compliment.tmr = setInterval( compliment.set, 500 );
-}) 
+})
