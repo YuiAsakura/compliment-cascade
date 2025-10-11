@@ -19,7 +19,7 @@ COPY compliment-cascade.war /opt/tomcat/webapps/ROOT.war
 EXPOSE 8080
 
 # Tomcatのポートを環境変数から設定
-ENV CATALINA_OPTS="-Dserver.http.port=$PORT"
+ENV CATALINA_OPTS="-Dserver.port=$PORT"
 
 # Tomcatを起動するコマンド
 ENTRYPOINT ["/opt/tomcat/bin/catalina.sh"]
