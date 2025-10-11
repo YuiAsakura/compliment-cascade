@@ -3,7 +3,7 @@
          xmlns="https://jakarta.ee/xml/ns/jakartaee" 
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" 
          id="WebApp_ID" version="5.0">
-  
+
   <display-name>compliment-cascade</display-name>
 
   <servlet>
@@ -14,5 +14,13 @@
     <servlet-name>ComplimentServlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
-  
+
+  <mime-mapping>
+    <extension>js</extension>
+    <mime-type>text/javascript</mime-type>
+  </mime-mapping>
+  <mime-mapping>
+    <extension>css</extension>
+    <mime-type>text/css</mime-type>
+  </mime-mapping>
   </web-app>
