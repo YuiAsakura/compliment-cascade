@@ -16,13 +16,13 @@
 			<%
 				// サーブレットから渡されたリストをリクエスト属性から取得
 				List<String> compliments = (List<String>) request.getAttribute("compliments");
-				
+
 				// リストがnullでなく、要素が存在する場合に処理
 				if (compliments != null) {
 					for (int i = 0; i < compliments.size(); i++) {
 						// 各単語をJSON形式の文字列（ダブルクォーテーションで囲む）で出力
 						out.print("\"" + compliments.get(i) + "\"");
-						
+
 						// リストの最後の要素以外はカンマで区切る
 						if (i < compliments.size() - 1) {
 							out.print(", ");
@@ -32,6 +32,6 @@
 			%>
 		];
 	</script>
-	<script src="./script.js"></script>
+	<script src="script.js"></script>
 </body>
 </html>
