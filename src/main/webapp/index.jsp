@@ -34,11 +34,11 @@
 	</script>
 	<script src="./script.js"></script>
 	
-	<div class="compliment-input-container">
-		<form>
-  			<input class="compliment-textbox" type="text" name="compliment"  maxlength="10" placeholder="だれかをほめる">
+	<div>
+		<form action="/InsertServlet" method="get" class="compliment-input-container">
+  			<input type="text" class="compliment-textbox" name="compliment"  maxlength="10" placeholder="だれかをほめる">
+  			<button type="submit" class="btn-insert-compliment">></button>
 		</form>
-		<a href="#" class="btn-circle-border-simple">></a>
 	</div>
 </body>
 </html>
