@@ -33,5 +33,12 @@
 		];
 	</script>
 	<script src="./script.js"></script>
+	
+	<div class="compliment-input-container">
+		<form>
+  			<input class="compliment-textbox" type="text" name="compliment"  maxlength="10" placeholder="だれかをほめる">
+		</form>
+		<a href="#" class="btn-circle-border-simple">></a>
+	</div>
 </body>
 </html>

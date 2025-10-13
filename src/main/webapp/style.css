@@ -26,14 +26,54 @@
 	opacity: 0;
 }
 
-/* 文字を波状に動かすサンプルコード
-.compliment{
-  display: inline-block;
-  animation: wave 1.2s ease-in-out infinite;
+.compliment-input-container {
+	position: fixed;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 80%;
+	max-width: 360px;
+	background-color: #fff;
+	border-radius: 28px;
+	border: 1px solid #c9d5e3;
+	display: flex;			/* 子要素を整列 */
+	justify-content: space-between;
+	align-items: center;	/* 垂直方向の中央揃え */
+	gap: 10px;
+	padding: 10px 20px;		/* 内側の余白 */
+	box-sizing: border-box; /* パディングを含めて幅を計算 */
+	z-index: 500;
 }
 
-@keyframes wave {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+.compliment-textbox {
+	/*flex-grow: 1;	/* 親要素の残りのスペースをすべて使う */
+	height: 24px;
+	border: none;
+	background-color: transparent;
+	resize: none;
+	outline: none;
+	font-family: inherit;
+	font-size: 16px;
+	line-height: 1.5;
+	padding: 5px 0;
+	overflow-y: auto;
 }
-*/
+
+.btn-circle-border-simple {
+  display: inline-block;
+  text-decoration: none;
+  color: #c9d5e3;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 50%;
+  border: solid 1px #c9d5e3;
+  text-align: center;
+  overflow: hidden;
+  font-weight: bold;
+  transition: .4s;
+}
+
+.btn-circle-border-simple:hover {
+  background: #d9e3f1;
+}
