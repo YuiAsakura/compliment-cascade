@@ -94,6 +94,13 @@ public class ComplimentServlet extends HttpServlet {
 		compliments.add("優しいね");
 		compliments.add("頼りになる");
 		*/
+		
+	    // ここでセッションからメッセージを取得し、リクエスト属性に設定し直す
+	    String message = (String) request.getSession().getAttribute("message");
+	    if (message != null) {
+	        request.setAttribute("message", message);
+	        request.getSession().removeAttribute("message");
+	    }
 
 		// 取得した褒め言葉のリストをリクエスト属性に設定
 		// "compliments"という名前でJSPにデータを渡す

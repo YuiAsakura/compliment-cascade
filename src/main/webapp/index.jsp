@@ -10,6 +10,10 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+	<% String message = (String) request.getAttribute("message"); %>
+	<% if (message != null) { %>
+    	<div class="compliment"><%= message %></div>
+	<% } %>
 	<script>
 		// Javaから渡された褒め言葉リストをJavaScriptの変数に格納
 		const complimentList = [
