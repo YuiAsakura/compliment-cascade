@@ -12,8 +12,13 @@
 <body>
 	<% String message = (String) request.getAttribute("message"); %>
 	<% if (message != null) { %>
-    	<div class="compliment"><%= message %></div>
-	<% } %>
+		<div class="insert-log-container">
+    		<div class="insert-result-log">
+    			<p><%= message %></p>
+    		</div>
+    	</div>
+    <% } %>
+	
 	<script>
 		// Javaから渡された褒め言葉リストをJavaScriptの変数に格納
 		const complimentList = [

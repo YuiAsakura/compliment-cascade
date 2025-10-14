@@ -137,7 +137,7 @@ public class ComplimentServlet extends HttpServlet {
 						
 						if (count > 0) {
 							// 重複している場合（挿入失敗）
-							request.getSession().setAttribute("message", "その褒め言葉はだれかが使ってくれていました。別の言葉を試してみてください。");
+							request.getSession().setAttribute("message", "❌ 別の言葉を試してみてください。");
 						} else {
 							// 重複していない場合（挿入成功）
 							String insertSql = "INSERT INTO compliments (word) VALUES (?)";
@@ -145,7 +145,7 @@ public class ComplimentServlet extends HttpServlet {
 								insertStmt.setString(1, compliment);
 								insertStmt.executeUpdate();
 							}
-							request.getSession().setAttribute("message", "「だれかをほめる」に成功しました！");
+							request.getSession().setAttribute("message", "✅「だれかをほめる」に成功しました！<br>ありがとう☺️");
 						}
 					}
 				}
@@ -154,7 +154,7 @@ public class ComplimentServlet extends HttpServlet {
 			}
 		} else {
 			// 入力値が空だった場合
-			request.getSession().setAttribute("message", "褒め言葉を入力してください");
+			request.getSession().setAttribute("message", "❌ 褒め言葉を入力してください");
 		}
 		System.out.println("enterd: " + compliment);
 		// GETリクエストにリダイレクトする
