@@ -2,7 +2,8 @@
  * 褒め言葉の滝を生成するスクリプト
  */
 // JSPから渡されたcomplimentListを使用する
-// var compliment = new Object(); は不要です。
+
+var compliment = new Object();
 
 compliment.list = complimentList;
 

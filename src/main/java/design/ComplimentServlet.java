@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,7 +20,7 @@ import java.net.URISyntaxException;
 /**
  * DBからComplimentテーブルを取得するためのサーブレット
  */
-@WebServlet("/ComplimentServlet")
+@WebServlet({"/ComplimentServlet", ""})
 public class ComplimentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -33,13 +34,12 @@ public class ComplimentServlet extends HttpServlet {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			//Class.forName("org.postgresql.Driver");
 			
-			/*
 			// データベースの接続情報を設定(local)
 			String url = "jdbc:mysql://localhost/compliment_cascade?useSSL=false&serverTimezone=Japan&allowPublicKeyRetrieval=true";
 			String user = "root";
 			String password = "Shirokumakoguma3";
-			*/
 			
+			/*
 			// データベースの接続情報を設定(Railway)
 			// Railwayの環境変数からURLを取得
 			String dbUrl = System.getenv("MYSQL_PUBLIC_URL");
@@ -67,6 +67,7 @@ public class ComplimentServlet extends HttpServlet {
 
 			// 接続URLを再構築
 			String url = "jdbc:mysql://" + hostname + ":" + port + "/" + databaseName + "?serverTimezone=Japan&useSSL=false&allowPublicKeyRetrieval=true";
+			*/
 			
 			// 以降取得した url, user, passwordを使う
 			// try-with-resources文で、Connection, Statement, ResultSetを自動で閉じます
@@ -93,6 +94,13 @@ public class ComplimentServlet extends HttpServlet {
 		compliments.add("優しいね");
 		compliments.add("頼りになる");
 		*/
+		
+	    // ここでセッションからメッセージを取得し、リクエスト属性に設定し直す
+	    String message = (String) request.getSession().getAttribute("message");
+	    if (message != null) {
+	        request.setAttribute("message", message);
+	        request.getSession().removeAttribute("message");
+	    }
 
 		// 取得した褒め言葉のリストをリクエスト属性に設定
 		// "compliments"という名前でJSPにデータを渡す
@@ -103,5 +111,53 @@ public class ComplimentServlet extends HttpServlet {
 		
 		// 処理をJSPファイルに転送
 		request.getRequestDispatcher("index.jsp").forward(request, response);
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// フォームから送信された褒め言葉を取得
+		String compliment = request.getParameter("compliment");
+		
+		// データベースに挿入する
+		if (compliment != null && !compliment.trim().isEmpty()) {
+			try {
+				// データベースに接続
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				String url = "jdbc:mysql://localhost/compliment_cascade?useSSL=false&serverTimezone=Japan&allowPublicKeyRetrieval=true";
+				String user = "root";
+				String password = "Shirokumakoguma3";
+				
+				try (Connection conn = DriverManager.getConnection(url, user, password)) {
+					// 重複チェックのSQL
+					String checkSql = "SELECT COUNT(*) FROM compliments WHERE word = ?";
+					try (PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
+						checkStmt.setString(1, compliment);
+						ResultSet rs = checkStmt.executeQuery();
+						rs.next();
+						int count = rs.getInt(1);
+						
+						if (count > 0) {
+							// 重複している場合（挿入失敗）
+							request.getSession().setAttribute("message", "❌ 別の言葉を試してみてください。");
+						} else {
+							// 重複していない場合（挿入成功）
+							String insertSql = "INSERT INTO compliments (word) VALUES (?)";
+							try (PreparedStatement insertStmt = conn.prepareStatement(insertSql)) {
+								insertStmt.setString(1, compliment);
+								insertStmt.executeUpdate();
+							}
+							request.getSession().setAttribute("message", "✅「だれかをほめる」に成功しました！<br>ありがとう☺️");
+						}
+					}
+				}
+			} catch (SQLException | ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		} else {
+			// 入力値が空だった場合
+			request.getSession().setAttribute("message", "❌ 褒め言葉を入力してください");
+		}
+		System.out.println("enterd: " + compliment);
+		// GETリクエストにリダイレクトする
+		response.sendRedirect(request.getContextPath() + "/");
 	}
 }
