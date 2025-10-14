@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+body {
+    font-family: "";
+}
+
 .compliment{
 	position: fixed;	/* 画面上の指定座標に配置するため */
 	font-size: 20px;
@@ -163,6 +167,7 @@
 	font-size: 16px;
 	line-height: 1.5;
 	color: #707070;
+	font-weight: bold;
 }
 
 .menu-dropup {
@@ -203,6 +208,7 @@
 	color: #707070;
 	display: inline-block;
 	white-space: nowrap;
+	font-weight: bold;
 }
 
 .menu-item:hover .menu-item p {
@@ -220,3 +226,18 @@
 	background: #d9e3f1;
 }
 
+#font-gothic {
+	font-family: "游ゴシック", "Yu Gothic", "メイリオ", "Meiryo", sans-serif;
+}
+
+#font-mincho {
+	font-family: "游明朝", "Yu Mincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", serif;
+}
+
+#font-meiryo {
+	font-family: "メイリオ", "Meiryo", sans-serif;
+}
+
+#font-default {
+	font-family: "";
+}
