@@ -41,17 +41,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	// 500ミリ秒間隔で実行
 	compliment.tmr = setInterval( compliment.set, 500 );
 
-	// ゴシック体ボタンの要素を取得
+	// 各フォントボタンの要素を取得
+	const defaultButton = document.getElementById('font-default');
 	const gothicButton = document.getElementById('font-gothic');
-	// 明朝体ボタンの要素を取得
-	const minchoButton = document.getElementById('font-mincho'); // スペルミスを修正
-	// メイリオボタンの要素を取得
+	const minchoButton = document.getElementById('font-mincho');
 	const meiryoButton = document.getElementById('font-meiryo');
 
 	// ページ全体の要素（body）を取得
 	const bodyElement = document.body;
 
 	// ボタンにクリックイベントリスナーを設定
+	if (defaultButton) {
+	    defaultButton.addEventListener('click', function() {
+	        // body要素のフォントスタイルをリセット
+	        bodyElement.style.fontFamily = '';
+	    });
+	}
 	if (gothicButton) {
 	    gothicButton.addEventListener('click', function() {
 	        bodyElement.style.fontFamily = '"游ゴシック", "Yu Gothic", "メイリオ", "Meiryo", sans-serif';
@@ -68,33 +73,3 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	    });
 	}
 })
-
-/*
-// ゴシック体ボタンの要素を取得
-const gothicButton = document.getElementById('font-gothic');
-// 明朝体ボタンの要素を取得
-const minchoButton = document.getElementById('font-mincho');
-// メイリオボタンの要素を取得
-const meiryoButton = document.getElementById('font-meiryo');
-
-// ページ全体の要素（body）を取得
-const bodyElement = document.body;
-
-// ゴシック体ボタンが押された時の処理
-gothicButton.addEventListener('click', function() {
-	// body要素のフォントスタイルを変更
-	bodyElement.style.fontFamily = 'sans-serif, Arial, sans-serif'
-});
-
-// 明朝体ボタンがクリックされたときの処理
-minchoButton.addEventListener('click', function() {
-    // body要素のフォントスタイルを変更
-    bodyElement.style.fontFamily = 'serif, "Times New Roman", serif';
-});
-
-// メイリオボタンがクリックされたときの処理
-meiryoButton.addEventListener('click', function() {
-    // body要素のフォントスタイルを変更
-    bodyElement.style.fontFamily = '"メイリオ", "Meiryo", sans-serif';
-});
-*/

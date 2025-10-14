@@ -53,6 +53,8 @@
 		<div class="menu-item">
 			<p>あ漢</p>
 			<ul class="menu-dropup">
+			    <li class="menu-dropup-item">
+        			<p id="font-default">あ漢</p>
 				<li class="menu-dropup-item">
 					<p id="font-gothic">あ漢</p>
 				</li>
