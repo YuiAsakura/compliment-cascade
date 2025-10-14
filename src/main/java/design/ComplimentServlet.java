@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -103,5 +104,53 @@ public class ComplimentServlet extends HttpServlet {
 		
 		// 処理をJSPファイルに転送
 		request.getRequestDispatcher("index.jsp").forward(request, response);
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// フォームから送信された褒め言葉を取得
+		String compliment = request.getParameter("compliment");
+		
+		// データベースに挿入する
+		if (compliment != null && !compliment.trim().isEmpty()) {
+			try {
+				// データベースに接続
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				String url = "jdbc:mysql://localhost/compliment_cascade?useSSL=false&serverTimezone=Japan&allowPublicKeyRetrieval=true";
+				String user = "root";
+				String password = "Shirokumakoguma3";
+				
+				try (Connection conn = DriverManager.getConnection(url, user, password)) {
+					// 重複チェックのSQL
+					String checkSql = "SELECT COUNT(*) FROM compliments WHERE word = ?";
+					try (PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
+						checkStmt.setString(1, compliment);
+						ResultSet rs = checkStmt.executeQuery();
+						rs.next();
+						int count = rs.getInt(1);
+						
+						if (count > 0) {
+							// 重複している場合（挿入失敗）
+							request.getSession().setAttribute("message", "その褒め言葉はだれかが使ってくれていました。別の言葉を試してみてください。");
+						} else {
+							// 重複していない場合（挿入成功）
+							String insertSql = "INSERT INTO compliments (word) VALUES (?)";
+							try (PreparedStatement insertStmt = conn.prepareStatement(insertSql)) {
+								insertStmt.setString(1, compliment);
+								insertStmt.executeUpdate();
+							}
+							request.getSession().setAttribute("message", "「だれかをほめる」に成功しました！");
+						}
+					}
+				}
+			} catch (SQLException | ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		} else {
+			// 入力値が空だった場合
+			request.getSession().setAttribute("message", "褒め言葉を入力してください");
+		}
+		System.out.println("enterd: " + compliment);
+		// GETリクエストにリダイレクトする
+		response.sendRedirect(request.getContextPath() + "/");
 	}
 }

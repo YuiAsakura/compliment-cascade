@@ -36,9 +36,6 @@
 	background-color: #fff;
 	border-radius: 28px;
 	border: 1px solid #c9d5e3;
-	display: flex;			/* 子要素を整列 */
-	align-items: center;	/* 垂直方向の中央揃え */
-	gap: 10px;
 	padding: 10px 20px;		/* 内側の余白 */
 	box-sizing: border-box; /* パディングを含めて幅を計算 */
 	z-index: 500;
@@ -48,6 +45,12 @@
 
 .compliment-input-container:hover {
 	opacity: 1;
+}
+
+.compliment-input-container form {
+	display: flex;
+	align-items: center;
+	gap: 10px;
 }
 
 .compliment-textbox {

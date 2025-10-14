@@ -34,8 +34,8 @@
 	</script>
 	<script src="./script.js"></script>
 	
-	<div>
-		<form action="/InsertServlet" method="get" class="compliment-input-container">
+	<div  class="compliment-input-container">
+		<form action="<%= request.getContextPath() %>/ComplimentServlet" method="post">
   			<input type="text" class="compliment-textbox" name="compliment"  maxlength="10" placeholder="だれかをほめる">
   			<button type="submit" class="btn-insert-compliment">></button>
 		</form>
