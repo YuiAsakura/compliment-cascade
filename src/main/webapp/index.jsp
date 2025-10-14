@@ -38,11 +38,13 @@
 	
 	<div class="menu">
 		<div  class="compliment-input-container">
-			<div class="insert-log-container">
-    			<div class="insert-result-log">
-    				<p><%= message %></p>
+			<% if (message != null) { %>
+				<div class="insert-log-container">
+	    			<div class="insert-result-log">
+    					<p><%= message %></p>
+    				</div>
     			</div>
-    		</div>
+    		<% } %>
 			<form action="<%= request.getContextPath() %>/ComplimentServlet" method="post">
   				<input type="text" class="compliment-textbox" name="compliment"  maxlength="10" placeholder="だれかをほめる">
   				<button type="submit" class="btn-insert-compliment">></button>
