@@ -54,13 +54,13 @@
 			<p>あ漢</p>
 			<ul class="menu-dropup">
 				<li class="menu-dropup-item">
-					<p>あ漢</p>
+					<p id="font-gothic">あ漢</p>
 				</li>
 				<li class="menu-dropup-item">
-					<p>あ漢</p>
+					<p id="font-mincho">あ漢</p>
 				</li>
 				<li class="menu-dropup-item">
-					<p>あ漢</p>
+					<p id="font-meiryo">あ漢</p>
 				</li>
 			</ul>
 		</div>
