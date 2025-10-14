@@ -50,26 +50,38 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	// ページ全体の要素（body）を取得
 	const bodyElement = document.body;
 
+	// ページ読み込み時にフォントを適用する
+	const savedFont = localStorage.getItem('selectedFont');
+	if (savedFont) {
+	    bodyElement.style.fontFamily = savedFont;
+	}
+	
 	// ボタンにクリックイベントリスナーを設定
 	if (defaultButton) {
 	    defaultButton.addEventListener('click', function() {
-	        // body要素のフォントスタイルをリセット
 	        bodyElement.style.fontFamily = '';
+			localStorage.removeItem('selectedFont');
 	    });
 	}
 	if (gothicButton) {
 	    gothicButton.addEventListener('click', function() {
-	        bodyElement.style.fontFamily = '"游ゴシック", "Yu Gothic", "メイリオ", "Meiryo", sans-serif';
+	        const font = '"游ゴシック", "Yu Gothic", "メイリオ", "Meiryo", sans-serif';
+	        bodyElement.style.fontFamily = font;
+	        localStorage.setItem('selectedFont', font);
 	    });
 	}
 	if (minchoButton) {
 	    minchoButton.addEventListener('click', function() {
-	        bodyElement.style.fontFamily = '"游明朝", "Yu Mincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", serif';
+	        const font = '"游明朝", "Yu Mincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", serif';
+	        bodyElement.style.fontFamily = font;
+	        localStorage.setItem('selectedFont', font);
 	    });
 	}
 	if (meiryoButton) {
 	    meiryoButton.addEventListener('click', function() {
-	        bodyElement.style.fontFamily = '"メイリオ", "Meiryo", sans-serif';
+	        const font = '"メイリオ", "Meiryo", sans-serif';
+	        bodyElement.style.fontFamily = font;
+	        localStorage.setItem('selectedFont', font);
 	    });
 	}
 })
