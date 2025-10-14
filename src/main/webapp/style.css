@@ -54,6 +54,7 @@ body {
 	opacity: 0.5;
 	transition: .3s;
 	flex-grow: 1;
+	position: relative;
 }
 .compliment-input-container:hover {
 	opacity: 1;
@@ -99,12 +100,12 @@ body {
 }
 
 .insert-log-container {
-	position: fixed;
-	bottom: 70px;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 80%;
-	max-width: 350px;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    transform: none;
+    margin-bottom: 5px;
 }
 
 .insert-result-log {
@@ -119,6 +120,7 @@ body {
 	animation-duration: 0.5s;
 	animation-fill-mode: forwards;
 	opacity: 1;
+	width: auto;
 }
 .insert-result-log:after {
 	position: absolute;

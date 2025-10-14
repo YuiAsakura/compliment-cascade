@@ -11,13 +11,6 @@
 </head>
 <body>
 	<% String message = (String) request.getAttribute("message"); %>
-	<% if (message != null) { %>
-		<div class="insert-log-container">
-    		<div class="insert-result-log">
-    			<p><%= message %></p>
-    		</div>
-    	</div>
-    <% } %>
 	
 	<script>
 		// Javaから渡された褒め言葉リストをJavaScriptの変数に格納
@@ -45,6 +38,11 @@
 	
 	<div class="menu">
 		<div  class="compliment-input-container">
+			<div class="insert-log-container">
+    			<div class="insert-result-log">
+    				<p><%= message %></p>
+    			</div>
+    		</div>
 			<form action="<%= request.getContextPath() %>/ComplimentServlet" method="post">
   				<input type="text" class="compliment-textbox" name="compliment"  maxlength="10" placeholder="だれかをほめる">
   				<button type="submit" class="btn-insert-compliment">></button>
