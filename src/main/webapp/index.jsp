@@ -43,11 +43,27 @@
 	</script>
 	<script src="./script.js"></script>
 	
-	<div  class="compliment-input-container">
-		<form action="<%= request.getContextPath() %>/ComplimentServlet" method="post">
-  			<input type="text" class="compliment-textbox" name="compliment"  maxlength="10" placeholder="だれかをほめる">
-  			<button type="submit" class="btn-insert-compliment">></button>
-		</form>
+	<div class="menu">
+		<div  class="compliment-input-container">
+			<form action="<%= request.getContextPath() %>/ComplimentServlet" method="post">
+  				<input type="text" class="compliment-textbox" name="compliment"  maxlength="10" placeholder="だれかをほめる">
+  				<button type="submit" class="btn-insert-compliment">></button>
+			</form>
+		</div>
+		<div class="menu-item">
+			<p>あ漢</p>
+			<ul class="menu-dropup">
+				<li class="menu-dropup-item">
+					<p>あ漢</p>
+				</li>
+				<li class="menu-dropup-item">
+					<p>あ漢</p>
+				</li>
+				<li class="menu-dropup-item">
+					<p>あ漢</p>
+				</li>
+			</ul>
+		</div>
 	</div>
 </body>
 </html>
