@@ -66,6 +66,32 @@
 				</li>
 			</ul>
 		</div>
+		<div class="menu-item">
+			<p id="main-color-icon" class="color-preview">
+				<span class="left-half-bg"></span>
+				<span class="right-half-font"></span>
+			</p>
+			<ul class="menu-dropup">
+				<li class="menu-dropup-item">
+					<p id="color-default" class="color-preview">
+						<span class="left-half-bg"></span>
+						<span class="right-half-font"></span>
+					</p>
+				</li>
+				<li class="menu-dropup-item">
+					<p id="color-set-1" class="color-preview">
+						<span class="left-half-bg"></span>
+						<span class="right-half-font"></span>
+					</p>
+				</li>
+				<li class="menu-dropup-item">
+					<p id="color-set-2" class="color-preview">
+						<span class="left-half-bg"></span>
+						<span class="right-half-font"></span>
+					</p>
+				</li>
+			</ul>
+</div>
 	</div>
 </body>
 </html>

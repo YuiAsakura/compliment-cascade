@@ -24,7 +24,7 @@ body {
     left: 50%; /* 親要素の水平方向の中心 */
     top: 50%;  /* 親要素の垂直方向の中心 */
     
-    z-index: -1;
+    z-index: -1000;
 }
 
 .compliment.show {
@@ -39,8 +39,8 @@ body {
 	left: 50%;
 	transform: translateX(-50%);
 	width: 80%;
-	max-width: 360px;
-	justify-content: space-between;
+	max-width: 480px;
+	justify-content: flex-start;
 	align-items: center;
 	gap: 10px;
 }
@@ -53,7 +53,8 @@ body {
 	box-sizing: border-box; /* パディングを含めて幅を計算 */
 	opacity: 0.5;
 	transition: .3s;
-	flex-grow: 1;
+	flex-grow: 0;
+	flex-basis: 300px;
 	position: relative;
 }
 .compliment-input-container:hover {
@@ -242,4 +243,64 @@ body {
 
 #font-default {
 	font-family: "";
+}
+
+/* 半円のコンテナ */
+.color-preview {
+    display: flex;
+}
+
+.menu-dropup-item p.color-preview {
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid #c9d5e3;
+    background: #fff;
+    color: #707070;
+    display: flex; /* flexboxで中身を整列 */
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    font-weight: bold;
+    overflow: hidden;
+}
+
+.color-preview span {
+    width: 40%; /* 親要素の幅の半分に設定 */
+    height: 80%; /* 親要素の高さと同じに設定 */
+    display: inline-block;
+    border: none;
+}
+
+.color-preview .left-half-bg {
+    border-radius: 48px 0 0 48px;
+}
+.color-preview .right-half-font {
+    border-radius: 0 48px 48px 0;
+}
+
+/* 提案するカラーセット */
+/* デフォルト */
+#color-default .left-half-bg {
+    background-color: #f2f2f2;
+}
+#color-default .right-half-font {
+    background-color: #000;
+}
+
+/* カラーセット1 */
+#color-set-1 .left-half-bg {
+    background-color: #e6f4ff;
+}
+#color-set-1 .right-half-font {
+    background-color: #5c98d4;
+}
+
+/* カラーセット2 */
+#color-set-2 .left-half-bg {
+    background-color: #fff8dc;
+}
+#color-set-2 .right-half-font {
+    background-color: #8b4513;
 }
