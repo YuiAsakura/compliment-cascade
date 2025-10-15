@@ -98,6 +98,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		'color-set-2': {
 			bgColor: '#fff8dc',
 			fontColor: '#8b4513'
+		},
+		'color-set-3': {
+		    bgColor: '#fce4ec', 
+		    fontColor: '#e91e63'
 		}
 	};
 	

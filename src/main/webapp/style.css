@@ -314,3 +314,10 @@ body {
 #color-set-2 .right-half-font {
     background-color: #8b4513;
 }
+
+#color-set-3 .left-half-bg {
+    background-color: #fce4ec; /* 薄いピンクに変更 */
+}
+#color-set-3 .right-half-font {
+    background-color: #e91e63; /* 少し濃いピンクに変更 */
+}

@@ -91,6 +91,12 @@
 						<span class="right-half-font"></span>
 					</p>
 				</li>
+				<li class="menu-dropup-item">
+				    <p id="color-set-3" class="color-preview">
+				        <span class="left-half-bg"></span>
+				        <span class="right-half-font"></span>
+				    </p>
+				</li>
 			</ul>
 		</div>
 	</div>
