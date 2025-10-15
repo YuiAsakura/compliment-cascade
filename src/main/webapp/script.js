@@ -84,4 +84,64 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	        localStorage.setItem('selectedFont', font);
 	    });
 	}
+	
+	// カラーセットの定義
+	const colorSets = {
+		'color-default': {
+			bgColor:'#fff',
+			fontColor: '#000'
+		},
+		'color-set-1': {
+			bgColor: '#e6f4ff',
+			fontColor: '#5c98d4'
+		},
+		'color-set-2': {
+			bgColor: '#fff8dc',
+			fontColor: '#8b4513'
+		},
+		'color-set-3': {
+		    bgColor: '#fce4ec', 
+		    fontColor: '#e91e63'
+		}
+	};
+	
+	// 各カラーボタンの要素を取得
+	const colorButtons = document.querySelectorAll('.menu-dropup-item p.color-preview');
+	const mainColorIcon = document.getElementById('main-color-icon');
+	
+	// カラーセットを適用する関数
+	const applyColorSet = (setId) => {
+		const colors = colorSets[setId];
+		if (colors) {
+			// bodyにスタイルを適用
+			document.body.style.backgroundColor = colors.bgColor;
+			document.body.style.color = colors.fontColor;
+			
+			// メニューアイコンに色を表示
+			const mainLeftHalf = mainColorIcon.querySelector('.left-half-bg');
+			const mainRightHalf = mainColorIcon.querySelector('.right-half-font');
+			mainLeftHalf.style.backgroundColor = colors.bgColor;
+			mainRightHalf.style.backgroundColor = colors.fontColor;
+			
+			// localStorageに保存
+			localStorage.setItem('selectedColorSet', setId);
+		}
+	};
+	
+	// ページ読み込み時に保存されたカラーセットを適用
+	const savedColorSet = localStorage.getItem('selectedColorSet');
+	if (savedColorSet) {
+		applyColorSet(savedColorSet);
+	} else {
+		// 保存されていない場合はデフォルトを適用
+		applyColorSet('color-default');
+	}
+	
+	// 各ボタンにクリックイベントリスナーを設定
+	colorButtons.forEach(button => {
+		button.addEventListener('click', () => {
+			const setId = button.id;
+			applyColorSet(setId);
+		});
+	});
 })

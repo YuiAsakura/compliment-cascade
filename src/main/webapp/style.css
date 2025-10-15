@@ -24,7 +24,7 @@ body {
     left: 50%; /* 親要素の水平方向の中心 */
     top: 50%;  /* 親要素の垂直方向の中心 */
     
-    z-index: -1;
+    z-index: -1000;
 }
 
 .compliment.show {
@@ -39,8 +39,8 @@ body {
 	left: 50%;
 	transform: translateX(-50%);
 	width: 80%;
-	max-width: 360px;
-	justify-content: space-between;
+	max-width: 480px;
+	justify-content: flex-start;
 	align-items: center;
 	gap: 10px;
 }
@@ -53,7 +53,8 @@ body {
 	box-sizing: border-box; /* パディングを含めて幅を計算 */
 	opacity: 0.5;
 	transition: .3s;
-	flex-grow: 1;
+	flex-grow: 0;
+	flex-basis: 300px;
 	position: relative;
 }
 .compliment-input-container:hover {
@@ -112,12 +113,13 @@ body {
 	position: relative;
 	padding: 0.5em 1em;
 	margin: 2em 0;
-	background: #e6f4ff;
-	color: #5c98d4;
+	background: #fff; /* 背景色を白色に変更 */
+	color: #707070; /* 文字色を濃い灰色に変更 */
+	border: 1px solid #c9d5e3; /* 周囲を少し濃い色で囲む */
 	border-radius: 5px;
 	animation-name: fadeOut;
-	animation-delay: 2.5s;
-	animation-duration: 0.5s;
+	animation-delay: 3s;
+	animation-duration: 1s;
 	animation-fill-mode: forwards;
 	opacity: 1;
 	width: auto;
@@ -128,9 +130,24 @@ body {
 	top: 100%;
 	left: 30px;
 	border: 15px solid transparent;
-	border-top: 15px solid #e6f4ff;
+	border-top: 15px solid #fff; /* 吹き出しの背景色を白色に変更 */
 	width: 0;
 	height: 0;
+	margin-left: -15px; /* 三角形を中央に配置するための調整 */
+    z-index: 1; /* 本体のボーダーより手前に配置 */
+}
+/* 吹き出し本体のボーダーと一体化させるために、もう一つ三角形を作成 */
+.insert-result-log::before {
+    position: absolute;
+    content: '';
+    top: 100%;
+    left: 30px;
+    border: 16px solid transparent; /* 本体より1px大きくしてボーダーにする */
+    border-top: 16px solid #c9d5e3; /* 本体ボーダーと同じ色に */
+    width: 0;
+    height: 0;
+    margin-left: -16px; /* 枠線を考慮した中央配置 */
+    z-index: 0; /* 本体のボーダーより奥に配置 */
 }
 
 .inser-result-log p {
@@ -242,4 +259,65 @@ body {
 
 #font-default {
 	font-family: "";
+}
+
+.color-preview {
+    display: flex;
+}
+
+.menu-item p {
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid #c9d5e3;
+    color: #707070;
+    display: flex; /* flexboxで中身を整列 */
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    font-weight: bold;
+    overflow: hidden;
+}
+
+.color-preview span {
+    width: 40%; /* 親要素の幅の半分に設定 */
+    height: 80%; /* 親要素の高さと同じに設定 */
+    display: inline-block;
+    border: none;
+}
+
+.color-preview .left-half-bg {
+    border-radius: 48px 0 0 48px;
+}
+.color-preview .right-half-font {
+    border-radius: 0 48px 48px 0;
+}
+
+#color-default .left-half-bg {
+    background-color: #fff;
+}
+#color-default .right-half-font {
+    background-color: #000;
+}
+
+#color-set-1 .left-half-bg {
+    background-color: #e6f4ff;
+}
+#color-set-1 .right-half-font {
+    background-color: #5c98d4;
+}
+
+#color-set-2 .left-half-bg {
+    background-color: #fff8dc;
+}
+#color-set-2 .right-half-font {
+    background-color: #8b4513;
+}
+
+#color-set-3 .left-half-bg {
+    background-color: #fce4ec; /* 薄いピンクに変更 */
+}
+#color-set-3 .right-half-font {
+    background-color: #e91e63; /* 少し濃いピンクに変更 */
 }
