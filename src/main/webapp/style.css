@@ -113,12 +113,13 @@ body {
 	position: relative;
 	padding: 0.5em 1em;
 	margin: 2em 0;
-	background: #e6f4ff;
-	color: #5c98d4;
+	background: #fff; /* 背景色を白色に変更 */
+	color: #707070; /* 文字色を濃い灰色に変更 */
+	border: 1px solid #c9d5e3; /* 周囲を少し濃い色で囲む */
 	border-radius: 5px;
 	animation-name: fadeOut;
-	animation-delay: 2.5s;
-	animation-duration: 0.5s;
+	animation-delay: 3s;
+	animation-duration: 1s;
 	animation-fill-mode: forwards;
 	opacity: 1;
 	width: auto;
@@ -129,9 +130,24 @@ body {
 	top: 100%;
 	left: 30px;
 	border: 15px solid transparent;
-	border-top: 15px solid #e6f4ff;
+	border-top: 15px solid #fff; /* 吹き出しの背景色を白色に変更 */
 	width: 0;
 	height: 0;
+	margin-left: -15px; /* 三角形を中央に配置するための調整 */
+    z-index: 1; /* 本体のボーダーより手前に配置 */
+}
+/* 吹き出し本体のボーダーと一体化させるために、もう一つ三角形を作成 */
+.insert-result-log::before {
+    position: absolute;
+    content: '';
+    top: 100%;
+    left: 30px;
+    border: 16px solid transparent; /* 本体より1px大きくしてボーダーにする */
+    border-top: 16px solid #c9d5e3; /* 本体ボーダーと同じ色に */
+    width: 0;
+    height: 0;
+    margin-left: -16px; /* 枠線を考慮した中央配置 */
+    z-index: 0; /* 本体のボーダーより奥に配置 */
 }
 
 .inser-result-log p {
