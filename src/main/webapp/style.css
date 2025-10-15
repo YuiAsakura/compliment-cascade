@@ -245,18 +245,16 @@ body {
 	font-family: "";
 }
 
-/* 半円のコンテナ */
 .color-preview {
     display: flex;
 }
 
-.menu-dropup-item p.color-preview {
+.menu-item p {
     width: 48px;
     height: 48px;
     padding: 0;
     border-radius: 50%;
     border: 1px solid #c9d5e3;
-    background: #fff;
     color: #707070;
     display: flex; /* flexboxで中身を整列 */
     justify-content: center;
@@ -280,16 +278,13 @@ body {
     border-radius: 0 48px 48px 0;
 }
 
-/* 提案するカラーセット */
-/* デフォルト */
 #color-default .left-half-bg {
-    background-color: #f2f2f2;
+    background-color: #fff;
 }
 #color-default .right-half-font {
     background-color: #000;
 }
 
-/* カラーセット1 */
 #color-set-1 .left-half-bg {
     background-color: #e6f4ff;
 }
@@ -297,7 +292,6 @@ body {
     background-color: #5c98d4;
 }
 
-/* カラーセット2 */
 #color-set-2 .left-half-bg {
     background-color: #fff8dc;
 }

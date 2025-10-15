@@ -55,6 +55,7 @@
 			<ul class="menu-dropup">
 			    <li class="menu-dropup-item">
         			<p id="font-default">あ漢</p>
+        		</li>
 				<li class="menu-dropup-item">
 					<p id="font-gothic">あ漢</p>
 				</li>
@@ -91,7 +92,7 @@
 					</p>
 				</li>
 			</ul>
-</div>
+		</div>
 	</div>
 </body>
 </html>
