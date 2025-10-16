@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>compiment-cascade</title>
+	<title>compliment-cascade</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
